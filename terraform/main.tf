@@ -27,12 +27,12 @@ data "archive_file" "source" {
 
 #Declaring two Google Cloud Storage buckets respectively to store the code of the Cloud Function and to upload files
 resource "google_storage_bucket" "function_bucket" {
-  name     = "${var.project_id}-function1"
+  name     = "${var.project_id}-function"
   location = var.region
 }
 
 resource "google_storage_bucket" "input_bucket" {
-  name     = "${var.project_id}-input1"
+  name     = "${var.project_id}-input"
   location = var.region
 }
 
@@ -53,8 +53,8 @@ resource "google_storage_bucket_object" "zip" {
 }
 
 resource "google_cloudfunctions_function" "tob_cloud_function" {
-  name                  = "function-trigger1t-on-gcs"
-  runtime               = "python37"  # of course changeable
+  name                  = "function-trigger-on-gcs"
+  runtime               = "python37"
   service_account_email = "my-test-project-364606@appspot.gserviceaccount.com"
 
   # Get the source code of the cloud function as a Zip compression
